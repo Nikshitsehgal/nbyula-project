@@ -16,7 +16,7 @@ function LogIn({ setLoggedIn, setUserData }) {
     }
     axios({
       method: "post",
-      url: "http://localhost:5000/api/logIn",
+      url: "https://nbyula-serverr.herokuapp.com/logIn",
       data: {
         username: loginData.username,
         password: loginData.password,

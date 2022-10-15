@@ -29,8 +29,20 @@ function App() {
   });
 
   useEffect(() => {
-    if (loggedIn === true) {
+    console.log("useeff", userData);
+    if (!userData.username) {
+      axios
+        .get("https://nbyula-serverr.herokuapp.com/api/getUserData", {
+          params: {
+            email: userData.email,
+          },
+        })
+        .then((response) => {
+          console.log("res", response);
+          setUserData(response);
+        });
     }
+    console.log("final", userData);
   }, [loggedIn]);
 
   return (

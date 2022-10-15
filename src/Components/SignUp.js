@@ -28,7 +28,7 @@ function SignUp({ setLoggedIn, setUserData }) {
 
     axios({
       method: "post",
-      url: "http://localhost:5000/api/signUp",
+      url: "https://nbyula-serverr.herokuapp.com/api/signUp",
       data: {
         username: signUpData.username,
         email: signUpData.email,
@@ -36,13 +36,8 @@ function SignUp({ setLoggedIn, setUserData }) {
       },
     })
       .then((data) => {
-        setUserData({
-          username: signUpData.username,
-          fullName: "",
-          email: signUpData.email,
-          password: signUpData.password,
-        });
         setLoggedIn(data.data);
+        setUserData(signUpData.email);
       })
       .catch((err) => console.log(err));
 

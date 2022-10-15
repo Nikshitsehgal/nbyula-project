@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 function Profile({ userData }) {
@@ -14,6 +15,33 @@ function Profile({ userData }) {
     ) {
       userData.password = updateData.newPassword;
     }
+    if (updateData.fullName) {
+      userData.fullName = updateData.fullName;
+    }
+    if (updateData.username) {
+      userData.username = updateData.username;
+    }
+    if (updateData.email) {
+      userData.email = updateData.email;
+    }
+
+    console.log(userData);
+
+    axios({
+      method: "put",
+      url: "https://nbyula-serverr.herokuapp.com/api/updateUserData",
+      data: {
+        _id: userData._id,
+        username: userData.username,
+        fullName: userData.fullName,
+        email: userData.email,
+        password: userData.password,
+      },
+    })
+      .then((data) => {
+        console.log(data.data.acknowledged);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
